@@ -30,8 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Package", "Build Pack
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{197C16E0-87A2-4FC6-A84E-9B9A03B664C0}"
 	ProjectSection(SolutionItems) = preProject
-		..\README.md = ..\README.md
 		..\LICENSE.md = ..\LICENSE.md
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{CDEC41B0-45DE-4283-8C2E-24A3745EC356}"
@@ -55,6 +55,42 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKart.Web.Store", "NKart.Web.Store\NKart.Web.Store.csproj", "{FD39D1AA-8F6E-474F-AF2D-24219E1934FE}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "NKart.Mui.Client", "NKart.Mui.Client\", "{D82FFCDE-E6E7-4D65-BEC9-A36C12A7B00B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50406"
+		Debug.AspNetCompiler.PhysicalPath = "NKart.Mui.Client\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50406\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50406"
+		Release.AspNetCompiler.PhysicalPath = "NKart.Mui.Client\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50406\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50406"
+	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50406"
+		Debug.AspNetCompiler.PhysicalPath = "NKart.Mui.Client\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50406\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50406"
+		Release.AspNetCompiler.PhysicalPath = "NKart.Mui.Client\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50406\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50406"
+	EndProjectSection
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_50406"
