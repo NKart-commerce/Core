@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2C3261C5-6999-4372-9B2A-11E8C3296540}</ProjectGuid>
+    <ProjectGuid>{90C37AC8-CFE3-4199-A7B2-826278EB59E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Merchello.FastTrack</RootNamespace>
-    <AssemblyName>Merchello.FastTrack</AssemblyName>
+    <RootNamespace>Merchello.Providers</RootNamespace>
+    <AssemblyName>Merchello.Providers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -38,6 +38,9 @@
     <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Braintree, Version=5.9.0.0, Culture=neutral, PublicKeyToken=31b586f34d3e96c7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Braintree.5.9.0\lib\net452\Braintree.dll</HintPath>
     </Reference>
     <Reference Include="businesslogic, Version=1.0.7128.14461, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.7.15.0\lib\net452\businesslogic.dll</HintPath>
@@ -140,6 +143,14 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PayPalCoreSDK, Version=1.6.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalCoreSDK.1.6.1\lib\net45\PayPalCoreSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PayPalMerchantSDK, Version=2.15.117.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPalMerchantSDK.2.15.117\lib\net20\PayPalMerchantSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Semver, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\semver.1.1.2\lib\net45\Semver.dll</HintPath>
       <Private>True</Private>
@@ -148,7 +159,6 @@
       <HintPath>..\packages\UmbracoCms.Core.7.15.0\lib\net452\SQLCE4Umbraco.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.1, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -159,6 +169,7 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -170,7 +181,6 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -234,71 +244,133 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\FastTrackConfiguration.cs" />
-    <Compile Include="Configuration\FastTrackSection.cs" />
-    <Compile Include="Controllers\Membership\CustomerMembershipController.cs" />
-    <Compile Include="Controllers\Payment\BraintreePayPalController.cs" />
-    <Compile Include="Controllers\Payment\BraintreeStandardCcController.cs" />
-    <Compile Include="Controllers\Payment\CashPaymentController.cs" />
-    <Compile Include="Controllers\CheckoutAddressController.cs" />
-    <Compile Include="Controllers\CheckoutPaymentMethodController.cs" />
-    <Compile Include="Controllers\CheckoutShipRateQuoteController.cs" />
-    <Compile Include="Controllers\CheckoutSummaryController.cs" />
-    <Compile Include="Controllers\Payment\FastTrackBraintreeControllerBase.cs" />
-    <Compile Include="Controllers\Payment\PurchaseOrderPaymentController.cs" />
-    <Compile Include="Factories\FastTrackBillingAddressModelFactory.cs" />
-    <Compile Include="Factories\FastTrackCheckoutAddressModelFactoryBase{T}.cs" />
-    <Compile Include="Factories\FastTrackCheckoutSummaryModelFactory.cs" />
-    <Compile Include="Factories\FastTrackShippingAddressModelFactory.cs" />
-    <Compile Include="Factories\NewMemberModelFactory.cs" />
-    <Compile Include="Install\FastTrackDataInstaller.cs" />
-    <Compile Include="Install\Installer.cs">
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="AutoMapperMappings.cs" />
+    <Compile Include="AutoMapperMappings-AuthorizeNet.cs">
+      <DependentUpon>AutoMapperMappings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\FastTrackBillingAddressModel.cs" />
-    <Compile Include="Models\FastTrackCheckoutAddressModel.cs" />
-    <Compile Include="Models\FastTrackCheckoutSummaryModel.cs" />
-    <Compile Include="Models\FastTrackPaymentMethodModel.cs" />
-    <Compile Include="Models\FastTrackShipRateQuoteModel.cs" />
-    <Compile Include="Models\IFastTrackCheckoutAddressModel.cs" />
-    <Compile Include="Models\ISuccessRedirectUrl.cs" />
-    <Compile Include="Models\Membership\ChangePasswordModel.cs" />
-    <Compile Include="Models\Membership\ForgotPasswordModel.cs" />
-    <Compile Include="Models\Membership\LoginModel.cs" />
-    <Compile Include="Models\Membership\NewMemberModel.cs" />
-    <Compile Include="Models\Payment\FastTrackPaymentModel.cs" />
-    <Compile Include="Models\Payment\PurchaseOrderPaymentModel.cs" />
-    <Compile Include="PackageActions\AddConfigSection.cs" />
+    <Compile Include="AutoMapperMappings-Braintree.cs">
+      <DependentUpon>AutoMapperMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoMapperMappings-PayPal.cs">
+      <DependentUpon>AutoMapperMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Caching\CacheKeys.cs" />
+    <Compile Include="Constants-PurchaseOrder.cs">
+      <DependentUpon>Constants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Constants-AuthorizeNet.cs">
+      <DependentUpon>Constants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constants-Braintree.cs">
+      <DependentUpon>Constants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constants-PayPal.cs">
+      <DependentUpon>Constants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\BraintreeApiException.cs" />
+    <Compile Include="Exceptions\PayPalApiException.cs" />
+    <Compile Include="Payment\Braintree\Models\BraintreeProviderSettings.cs" />
+    <Compile Include="Models\IPaymentProviderSettings.cs" />
+    <Compile Include="Payment\PayPal\Controllers\IPayPalSurfaceController.cs" />
+    <Compile Include="Payment\PayPal\Controllers\PayPalExpressController.cs" />
+    <Compile Include="Payment\PayPal\Controllers\PayPalSurfaceControllerBase.cs" />
+    <Compile Include="Payment\PayPal\Factories\ExpressCheckoutResponseFactory.cs" />
+    <Compile Include="Payment\PayPal\Factories\PayPalBasicAmountTypeFactory.cs" />
+    <Compile Include="Payment\PayPal\Factories\PayPalFactorySettings.cs" />
+    <Compile Include="Payment\PayPal\Factories\PayPalPaymentDetailsTypeFactory.cs" />
+    <Compile Include="Payment\PayPal\Factories\PayPalAddressTypeFactory.cs" />
+    <Compile Include="Payment\PayPal\Models\ExpressCheckoutResponse.cs" />
+    <Compile Include="Payment\PayPal\Models\PayPalExpressCheckoutRequestDetailsOverride.cs" />
+    <Compile Include="Payment\PayPal\Models\PayPalExpressCheckoutUrls.cs" />
+    <Compile Include="Payment\PayPal\Models\PayPalExpressTransaction.cs" />
+    <Compile Include="Payment\PayPal\Models\PayPalExpressTransactionRecord.cs" />
+    <Compile Include="Payment\PayPal\Models\PayPalProviderSettings.cs" />
+    <Compile Include="Models\ProviderSettingsExtensions.cs" />
+    <Compile Include="Models\ProviderSettingsMapperAttribute.cs" />
+    <Compile Include="Payment\Braintree\BraintreeApiHelper.cs" />
+    <Compile Include="Payment\Braintree\BraintreeCustomerExtensions.cs" />
+    <Compile Include="Payment\Braintree\BraintreeProcessorArguementCollectionExtensions.cs" />
+    <Compile Include="Payment\Braintree\Builders\IBuilder.cs" />
+    <Compile Include="Payment\Braintree\Builders\InvoiceTransactionRequestBuilder.cs" />
+    <Compile Include="Payment\Braintree\Builders\RequestBuilderBase.cs" />
+    <Compile Include="Payment\Braintree\Controllers\BraintreeApiController.cs" />
+    <Compile Include="Payment\Braintree\Controllers\BraintreeWebhooksControllerBase.cs" />
+    <Compile Include="Payment\Braintree\EnvironmentType.cs" />
+    <Compile Include="Payment\Braintree\MappingExtensions.cs" />
+    <Compile Include="Payment\Braintree\Models\BillingAddress.cs" />
+    <Compile Include="Payment\Braintree\Models\MerchantDescriptor.cs" />
+    <Compile Include="Payment\Braintree\Models\TransactionOption.cs" />
+    <Compile Include="Payment\Braintree\Models\TransactionReference.cs" />
+    <Compile Include="Payment\Braintree\Provider\BraintreePaymentGatewayMethodBase.cs" />
+    <Compile Include="Payment\Braintree\Provider\BraintreePaymentGatewayProvider.cs" />
+    <Compile Include="Payment\Braintree\Provider\BraintreeStandardPaymentGatewayBase.cs" />
+    <Compile Include="Payment\Braintree\Provider\BraintreeStandardTransactionPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\BraintreeSubscriptionRecordPaymentMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\BraintreeVaultPaymentGatewayMethodBase.cs" />
+    <Compile Include="Payment\Braintree\Provider\BraintreeVaultTransactionPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\IBraintreePaymentGatewayProvider.cs" />
+    <Compile Include="Payment\Braintree\Provider\IBraintreeStandardTransactionPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\IBraintreeSubscriptionRecordPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\IBraintreeVaultTransactionPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\IPayPalOneTimeTransactionPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\PayPalOneTimeTransactionPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Provider\PayPalVaultTransactionPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreeApiRequestFactory.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreeApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreeApiServiceBase.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreeCustomerApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreePaymentMethodApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreeSubscriptionApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreeTransactionApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\BraintreeWebhooksApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\IBraintreeApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\IBraintreeCustomerApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\IBraintreePaymentMethodApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\IBraintreeSubscriptionApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\IBraintreeTransactionApiService.cs" />
+    <Compile Include="Payment\Braintree\Services\IBraintreeWebhooksApiService.cs" />
+    <Compile Include="Payment\PayPal\Models\CurrencyCodeTypeDecimal.cs" />
+    <Compile Include="Payment\PayPal\Models\PayPalProviderSettingsExtensions.cs" />
+    <Compile Include="Models\PaymentRedirectingUrl.cs" />
+    <Compile Include="Payment\PayPal\Models\ProcessorArgumentCollectionExtensions.cs" />
+    <Compile Include="Payment\PayPal\Models\SdkConfig.cs" />
+    <Compile Include="Payment\PayPal\PayPalApiHelper.cs" />
+    <Compile Include="Payment\PayPal\PayPalMode.cs" />
+    <Compile Include="Payment\PayPal\PayPalExpressCheckoutPaymentProcessor.cs" />
+    <Compile Include="Payment\PayPal\PayPalProcessorArgumentCollectionsExtensions.cs" />
+    <Compile Include="Payment\PayPal\Provider\PayPalExpressCheckoutPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\PayPal\Provider\PayPalPaymentGatewayProvider.cs" />
+    <Compile Include="Payment\PayPal\Services\IPayPalApiPaymentService.cs" />
+    <Compile Include="Payment\PayPal\Services\IPayPalApiService.cs" />
+    <Compile Include="Payment\PayPal\Services\IPayPalApiServiceBase.cs" />
+    <Compile Include="Payment\PayPal\Services\IPayPalExpressCheckoutService.cs" />
+    <Compile Include="Payment\PayPal\Services\PayPalApiService.cs" />
+    <Compile Include="Payment\PayPal\Services\PayPalApiServiceBase.cs" />
+    <Compile Include="Payment\PayPal\Services\PayPalExpressCheckoutService.cs" />
+    <Compile Include="Payment\PurchaseOrder\PurchaseOrderFormData.cs" />
+    <Compile Include="Payment\PurchaseOrder\PurchaseOrderInfoExtensions.cs" />
+    <Compile Include="Payment\PurchaseOrder\Provider\IPurchaseOrderPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\PurchaseOrder\Provider\IPurchaseOrderPaymentGatewayProvider.cs" />
+    <Compile Include="Payment\PurchaseOrder\Provider\PurchaseOrderPaymentGatewayMethod.cs" />
+    <Compile Include="Payment\PurchaseOrder\Provider\PurchaseOrderPaymentGatewayProvider.cs" />
+    <Compile Include="Payment\RedirectPaymentMethodBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublishedContentExtensions.cs" />
+    <Compile Include="Properties\AssemblyVisibility.cs" />
+    <Compile Include="Resolvers\ProviderSettingsResolver.cs" />
+    <Compile Include="UmbracoApplicationEvents.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Merchello.Web\NKart.Web.csproj">
+      <Project>{81d9e7da-5a5a-444a-823f-1d97d7d5fedf}</Project>
+      <Name>NKart.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Merchello.Core\Merchello.Core.csproj">
-      <Project>{2a83a229-c24b-4d8d-b806-7c9999eb9461}</Project>
-      <Name>Merchello.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Merchello.Examine\Merchello.Examine.csproj">
-      <Project>{28a665a9-2aad-4230-ab8c-0f0b0f1b2115}</Project>
-      <Name>Merchello.Examine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Merchello.Providers\Merchello.Providers.csproj">
-      <Project>{90c37ac8-cfe3-4199-a7b2-826278eb59e5}</Project>
-      <Name>Merchello.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Merchello.Web.Store\Merchello.Web.Store.csproj">
-      <Project>{fd39d1aa-8f6e-474f-af2d-24219e1934fe}</Project>
-      <Name>Merchello.Web.Store</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Merchello.Web\Merchello.Web.csproj">
-      <Project>{81d9e7da-5a5a-444a-823f-1d97d7d5fedf}</Project>
-      <Name>Merchello.Web</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

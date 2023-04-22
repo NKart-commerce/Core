@@ -676,29 +676,17 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Merchello.Core\Merchello.Core.csproj">
-      <Project>{2a83a229-c24b-4d8d-b806-7c9999eb9461}</Project>
-      <Name>Merchello.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Merchello.Examine\Merchello.Examine.csproj">
-      <Project>{28a665a9-2aad-4230-ab8c-0f0b0f1b2115}</Project>
-      <Name>Merchello.Examine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Merchello.FastTrack\Merchello.FastTrack.csproj">
-      <Project>{2c3261c5-6999-4372-9b2a-11e8c3296540}</Project>
-      <Name>Merchello.FastTrack</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Merchello.Providers\Merchello.Providers.csproj">
+    <ProjectReference Include="..\Merchello.Providers\NKart.Providers.csproj">
       <Project>{90c37ac8-cfe3-4199-a7b2-826278eb59e5}</Project>
-      <Name>Merchello.Providers</Name>
+      <Name>NKart.Providers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Merchello.Web.Store\Merchello.Web.Store.csproj">
+    <ProjectReference Include="..\Merchello.Web.Store\NKart.Web.Store.csproj">
       <Project>{fd39d1aa-8f6e-474f-af2d-24219e1934fe}</Project>
-      <Name>Merchello.Web.Store</Name>
+      <Name>NKart.Web.Store</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Merchello.Web\Merchello.Web.csproj">
+    <ProjectReference Include="..\Merchello.Web\NKart.Web.csproj">
       <Project>{81d9e7da-5a5a-444a-823f-1d97d7d5fedf}</Project>
-      <Name>Merchello.Web</Name>
+      <Name>NKart.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
