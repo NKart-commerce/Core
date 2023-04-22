@@ -449,3 +449,6 @@ FodyWeavers.xsd
 
 #include default location for packages
 !**/umbraco/Data/packages
+
+#exclude NDepend output folder
+**/NDependOut/

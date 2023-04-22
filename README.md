@@ -1,14 +1,13 @@
-# Merchello
+# NKart
 
-Merchello is a highly configurable, open source eCommerce package for [Umbraco CMS](http://www.umbraco.com) v7 ONLY. However, this project is no longer actively developed. 
-
-If you are looking for an eCommerce solution for Umbraco v8 then I suggest you take a look at Vendr. You can follow them on Twitter here [@heyvendr](https://twitter.com/heyvendr) or signup on their website [getvendr.net](http://getvendr.net)
+NKart is a highly configurable, open source eCommerce package for multiple .NET-based content management systems, primarily [Umbraco CMS](http://www.umbraco.com).
+Plans are in place to support other .NET-based content management systems - please submit issues if you want your particular CMS supported.
 
 ## Basic features
 
-Merchello comes with the following core features, but it's also built so you can expand on it to your needs. Here's what you get right out of the box:
+NKart comes with the following core features, but it's also built so you can expand on it to your needs. Here's what you get right out of the box:
 
-* Products with  options and variants
+* Products with options and variants
 * Flat rate shipping provider (by weight or price) for a single warehouse that can be adjusted by country and region
 * Cash, Paypal, Purchase & Braintree payment providers
 * Both invoicing and orders, created with each purchase
@@ -21,27 +20,19 @@ Merchello comes with the following core features, but it's also built so you can
 
 ## Downloading
 
-Look on the releases tab
+Packages will be released via Nuget once stable releases are available - at present, this project is in active development & releases will only be available once stability is confirmed across multiple platforms.
 
 ## Documentation / Website
 
-Our documentation is a tad outdated, but it's all we have at the moment. We are always looking for help with the docs ;)
-
-[https://merchello.readme.io/](https://merchello.readme.io/)
+Documentation will be available in due course at (https://docs.nkart.io).
 
 ## Contribute
 
-We would love and need your help. If you want to contribute to Merchello's core, the easiest way to get started is to fork the project on [GitHub](https://github.com/merchello/Merchello) and open <code>src/Merchello.sln</code> in Visual Studio. 
+For now, contribution is restricted to a few trusted members who understand the architecture and are able to disassemble it from being wired to Umbraco.
+If you think you can help with that effort, please email (hello@jamiehowarth.me) to discuss your potential to contribute to the project.
 
-The Merchello.Web.UI.Client project is where the backoffice JavaScript files are, and if you are looking to update anything in there. Make sure you run the grunt tasks after your have made your changes. Please see the ReadMe.md in the Merchello.Web.UI.Client project root for more information.
+## Bugs
 
-Once you are done, just build and run. The project comes with a local SQLCE database with the Bazaar starter kit. The login for the back office is
-
-admin
-1234
-
-We're excited to see what you do!
-
-## Please report bugs you find!
-
-If you don't want to dip your fingers into the core, one of the best ways you can contribute to Merchello is by letting us know if something is going wrong. This feedback is very useful to us - we can't catch them all! To view existing issues or submit one of your own, visit [https://github.com/merchello/merchello/issues](https://github.com/merchello/merchello/issues).
+Bugs can be filed under the Issues tab.
+This project will continue to be open-source under an MIT license, but support will only be offered for bug-fixes. 
+Feature requests will require a support contract to be in place (pricing, details & how to purchase to be announced soon).

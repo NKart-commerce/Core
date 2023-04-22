@@ -30,8 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Package", "Build Pack
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{197C16E0-87A2-4FC6-A84E-9B9A03B664C0}"
 	ProjectSection(SolutionItems) = preProject
-		..\License.md = ..\License.md
 		..\README.md = ..\README.md
+		..\LICENSE.md = ..\LICENSE.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{CDEC41B0-45DE-4283-8C2E-24A3745EC356}"
