@@ -1,0 +1,7 @@
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Web")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Web.Store")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Web.UI")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.Base")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.UnitTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.IntegrationTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.Plugin.TestHelpers")]

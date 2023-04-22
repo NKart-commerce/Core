@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<NKart.FastTrack.Models.Payment.PurchaseOrderPaymentModel>
+@using System.Web.Mvc.Html
+@using NKart.FastTrack.Controllers.Payment
+@using NKart.FastTrack.Ui
+@using NKart.Web.Models.Ui
+@using NKart.Web.Store.Controllers.Payment
+@using Umbraco.Web
+@{
+    Model.SuccessRedirectUrl = ExampleUiHelper.Content.GetReceipt().Url;
+}
+<h3>Purchase Order Number</h3>
+@using (Html.BeginUmbracoForm<PurchaseOrderPaymentController>("Process", new { area = "FastTrack" }))
+{
+
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.SuccessRedirectUrl)
+
+        <div class="form-group">        
+            @Html.LabelFor(x => x.PurchaseOrderNumber)
+            @Html.TextBoxFor(x => x.PurchaseOrderNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.PurchaseOrderNumber)
+        </div>
+
+        <a href="@ExampleUiHelper.CheckoutWorkflow.GetPageForStage(CheckoutStage.PaymentMethod).Url" class="btn btn-default">Back</a>
+        @Html.Partial("_RequireJsSubmitBtn", Model)
+    
+}

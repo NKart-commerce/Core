@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<NKart.FastTrack.Models.Payment.FastTrackPaymentModel>
+@using System.Web.Mvc.Html
+@using NKart.FastTrack.Controllers.Payment
+@using NKart.FastTrack.Ui
+@using NKart.Web.Models.Ui
+@using Umbraco.Web
+@{
+    Model.SuccessRedirectUrl = ExampleUiHelper.Content.GetReceipt().Url;
+}
+<h3>Cash Payment</h3>
+@using (Html.BeginUmbracoForm<CashPaymentController>("Process", new { area = "FastTrack" }))
+{
+    <div>
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.SuccessRedirectUrl)
+        <a href="@ExampleUiHelper.CheckoutWorkflow.GetPageForStage(CheckoutStage.PaymentMethod).Url" class="btn btn-default">Back</a>
+        @Html.Partial("_RequireJsSubmitBtn", Model)
+    </div>
+}
