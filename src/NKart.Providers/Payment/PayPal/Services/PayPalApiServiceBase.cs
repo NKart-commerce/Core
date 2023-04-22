@@ -1,0 +1,101 @@
+﻿using NKart.Providers.Payment.PayPal.Models;
+
+namespace NKart.Providers.Payment.PayPal.Services
+{
+    using System;
+    using System.Net;
+
+    using NKart.Core;
+    using NKart.Core.Logging;
+    using NKart.Providers.Payment.PayPal.Models;
+
+    using global::PayPal;
+
+    /// <summary>
+    /// A base class of <see cref="IPayPalApiServiceBase"/>s.
+    /// </summary>
+    public class PayPalApiServiceBase : IPayPalApiServiceBase
+    {
+        /// <summary>
+        /// The <see cref="PayPalProviderSettings"/>.
+        /// </summary>
+        private readonly PayPalProviderSettings _settings;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PayPalApiServiceBase"/> class.
+        /// </summary>
+        /// <param name="settings">
+        /// The settings.
+        /// </param>
+        protected PayPalApiServiceBase(PayPalProviderSettings settings)
+        {
+            Ensure.ParameterNotNull(settings, "settings");
+            _settings = settings;
+        }
+
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        internal PayPalProviderSettings Settings
+        {
+            get
+            {
+                return _settings;
+            }
+        }
+
+        /// <summary>
+        /// Ensures the connection channel to PayPal.
+        /// </summary>
+        protected static void EnsureSslTslChannel()
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.DefaultConnectionLimit = 9999;
+        }
+
+        /// <summary>
+        /// Gets the access token.
+        /// </summary>
+        /// <returns>
+        /// The access token.
+        /// </returns>
+        protected APIContext GetApiContext()
+        {
+            try
+            {
+                EnsureSslTslChannel();
+
+                var attempt = _settings.GetApiSdkConfig();
+
+                if (!attempt.Success) throw attempt.Exception;
+
+                var accessToken = new OAuthTokenCredential(_settings.ClientId, _settings.ClientSecret, attempt.Result).GetAccessToken();
+
+                return new APIContext(accessToken);
+            }
+            catch (Exception ex)
+            {
+                var logData = GetLoggerData();
+                MultiLogHelper.Error<PayPalApiServiceBase>("Failed to create PayPal APIContext", ex, logData);
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// Gets the extended logger data.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IExtendedLoggerData"/>.
+        /// </returns>
+        protected IExtendedLoggerData GetLoggerData()
+        {
+            var logData = MultiLogger.GetBaseLoggingData();
+
+            logData.AddCategory("PayPal");
+
+            return logData;
+        }
+    }
+}

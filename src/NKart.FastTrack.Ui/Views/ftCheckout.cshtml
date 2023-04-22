@@ -1,0 +1,15 @@
+﻿@inherits NKart.Web.Mvc.MerchelloTemplatePage
+@using NKart.FastTrack.Ui
+@using NKart.Web
+
+@{
+    Layout = "FastTrack.cshtml";
+    if (CurrentCustomer.Basket().IsEmpty)
+    {
+        Response.Redirect(ExampleUiHelper.Content.GetStoreRoot().Url);
+    }
+}
+
+@Html.Partial("_Headline")
+
+@RenderBody()

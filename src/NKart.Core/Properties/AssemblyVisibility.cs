@@ -1,0 +1,11 @@
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Examine")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Web")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Web.Store")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.UaaS")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Providers")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.Base")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.UnitTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.IntegrationTests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Tests.Plugin.TestHelpers")]
+// Required for the installer
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NKart.Bazaar")]

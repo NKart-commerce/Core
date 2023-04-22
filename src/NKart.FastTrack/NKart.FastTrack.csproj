@@ -252,7 +252,9 @@
     <Compile Include="Factories\FastTrackShippingAddressModelFactory.cs" />
     <Compile Include="Factories\NewMemberModelFactory.cs" />
     <Compile Include="Install\FastTrackDataInstaller.cs" />
-    <Compile Include="Install\Installer.cs" />
+    <Compile Include="Install\Installer.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Models\FastTrackBillingAddressModel.cs" />
     <Compile Include="Models\FastTrackCheckoutAddressModel.cs" />
     <Compile Include="Models\FastTrackCheckoutSummaryModel.cs" />
